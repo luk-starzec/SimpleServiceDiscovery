@@ -1,0 +1,6 @@
+@Discovery.Service_HostAddress = http://localhost:5272
+
+GET {{Discovery.Service_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
