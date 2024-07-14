@@ -1,13 +1,58 @@
-﻿using Example.Shared;
-using Grpc.Net.Client;
-using MagicOnion.Client;
+﻿using Example.Client.Runners;
 
-var channel = GrpcChannel.ForAddress("https://localhost:7101");
+//Console.WriteLine("BasicRunner:");
+//var basicRunner = new BasicRunner
+//{
+//    Iterations = 5,
+//    Delay = 100
+//};
+//await basicRunner.RunAsync();
 
-var client = MagicOnionClient.Create<IMyFirstService>(channel);
+//Console.WriteLine();
 
-var result = await client.SumAsync(123, 456);
+//Console.WriteLine("StaticResolverRunner:");
+//var staticResolverRunner = new StaticResolverRunner()
+//{
+//    Delay = 5000,
+//    Iterations = 30
+//};
+//await staticResolverRunner.RunAsync();
 
-Console.WriteLine($"Result: {result}");
+//Console.WriteLine();
 
+//Console.WriteLine("StaticResolverRandomBalanserRunner:");
+//var staticResolverRandomBalanserRunner = new StaticResolverRandomBalanserRunner()
+//{
+//    Iterations = 20,
+//};
+//await staticResolverRandomBalanserRunner.RunAsync();
+
+//Console.WriteLine();
+
+//Console.WriteLine("FileResolverRunner:");
+//var fileResolverRunner = new FileResolverRunner();
+//await fileResolverRunner.RunAsync();
+
+//Console.WriteLine();
+
+//Console.WriteLine("FileResolverRandomBalanserRunner:");
+//var fileResolverRandomBalanserRunner = new FileResolverRandomBalanserRunner()
+//{
+//    Iterations = 20
+//};
+//await fileResolverRandomBalanserRunner.RunAsync();
+
+//Console.WriteLine();
+
+Console.WriteLine("DiscoveryResolverRunner:");
+var discoveryResolverRunner = new DiscoveryResolverRunner()
+{
+    Iterations = 30,
+    Delay = 2000
+};
+await discoveryResolverRunner.RunAsync();
+
+Console.WriteLine();
+
+Console.Write("Press ENTER...");
 Console.ReadLine();

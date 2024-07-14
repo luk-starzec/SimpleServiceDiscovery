@@ -1,6 +1,6 @@
 ﻿namespace Discovery.Service.Interfaces;
 
-public interface ISimpleDiscovery
+public interface ISimpleDiscoveryService
 {
     void RegisterService(string name, string url);
     void RemoveService(string name, string url);

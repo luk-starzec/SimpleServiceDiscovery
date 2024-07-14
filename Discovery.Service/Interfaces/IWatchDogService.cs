@@ -1,6 +1,6 @@
 ﻿namespace Discovery.Service.Interfaces;
 
-public interface IWatchDog
+public interface IWatchDogService
 {
     Task StatusCheckAsync();
 }

@@ -4,8 +4,8 @@ using Discovery.Service.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddHostedService<WatchDogBackgroundService>();
-builder.Services.AddTransient<IWatchDog, WatchDog>();
-builder.Services.AddSingleton<ISimpleDiscovery, SimpleDiscovery>();
+builder.Services.AddTransient<IWatchDogService, WatchDogService>();
+builder.Services.AddSingleton<ISimpleDiscoveryService, SimpleDiscoveryService>();
 
 builder.Services.AddHttpClient();
 builder.Services.AddControllers();

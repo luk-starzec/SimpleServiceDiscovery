@@ -1,6 +1,29 @@
-@Example.Service_HostAddress = http://localhost:5169
+@Service_HostAddress = https://localhost:7001
 
-GET {{Example.Service_HostAddress}}/weatherforecast/
-Accept: application/json
+GET {{Service_HostAddress}}/hc
+
+###
+
+GET {{Service_HostAddress}}/api/info
+
+###
+
+POST {{Service_HostAddress}}/api/info/register
+
+###
+
+POST {{Service_HostAddress}}/api/info/disable
+
+###
+
+POST {{Service_HostAddress}}/api/info/disable?notifyDiscovery=true
+
+###
+
+POST {{Service_HostAddress}}/api/info/enable
+
+###
+
+POST {{Service_HostAddress}}/api/info/enable?notifyDiscovery=true
 
 ###

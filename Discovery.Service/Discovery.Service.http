@@ -1,6 +1,13 @@
-@Discovery.Service_HostAddress = http://localhost:5272
+@Service_HostAddress = https://localhost:7801
 
-GET {{Discovery.Service_HostAddress}}/weatherforecast/
-Accept: application/json
+GET {{Service_HostAddress}}/api/discovery
+
+###
+
+GET {{Service_HostAddress}}/api/discovery/Example.Service
+
+###
+
+POST {{Service_HostAddress}}/api/discovery/init
 
 ###

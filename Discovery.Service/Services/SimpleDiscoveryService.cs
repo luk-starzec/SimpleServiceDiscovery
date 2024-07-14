@@ -3,7 +3,7 @@ using Discovery.Service.Interfaces;
 
 namespace Discovery.Service.Services;
 
-public class SimpleDiscovery : ISimpleDiscovery
+public class SimpleDiscoveryService : ISimpleDiscoveryService
 {
     private readonly Dictionary<string, List<string>> _registeredServices = [];
 

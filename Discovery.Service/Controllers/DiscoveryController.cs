@@ -8,35 +8,50 @@ namespace Discovery.Service.Controllers
     [ApiController]
     public class DiscoveryController : ControllerBase
     {
-        private readonly ISimpleDiscovery simpleDiscovery;
+        private readonly ISimpleDiscoveryService _simpleDiscovery;
+        private readonly ILogger<DiscoveryController> _logger;
 
-        public DiscoveryController(ISimpleDiscovery simpleDiscovery)
+        public DiscoveryController(ISimpleDiscoveryService simpleDiscovery, ILogger<DiscoveryController> logger)
         {
-            this.simpleDiscovery = simpleDiscovery;
+            _simpleDiscovery = simpleDiscovery;
+            _logger = logger;
         }
 
         [HttpGet]
         public IEnumerable<KeyValuePair<string, string[]>> Get()
         {
-            return simpleDiscovery.GetServices();
+            return _simpleDiscovery.GetServices();
         }
 
         [HttpGet("{serviceName}")]
         public string[] Get(string serviceName)
         {
-            return simpleDiscovery.GetServiceUrls(serviceName);
+            return _simpleDiscovery.GetServiceUrls(serviceName);
         }
 
-        [HttpPost]
-        public void Post([FromBody]ServiceUrlDto service)
+        [HttpPost("add")]
+        public void Add([FromBody]ServiceUrlDto service)
         {
-            simpleDiscovery.RegisterService(service.Name, service.Url);
+            _logger.LogInformation($"Added {service.Name} with {service.Url}");
+
+            _simpleDiscovery.RegisterService(service.Name, service.Url);
         }
 
-        [HttpDelete("{serviceName}/{serviceUrl}")]
-        public void Delete(string serviceName, string serviceUrl)
+        [HttpPost("remove")]
+        public void Remove([FromBody] ServiceUrlDto service)
         {
-            simpleDiscovery.RemoveService(serviceName, serviceUrl);
+            _logger.LogInformation($"Removed {service.Name} with {service.Url}");
+
+            _simpleDiscovery.RemoveService(service.Name, service.Url);
+        }
+
+        [HttpPost("init")]
+        public void InitDefault()
+        {
+            _logger.LogInformation($"Init");
+
+            _simpleDiscovery.RegisterService("Example.Service", "https://localhost:7001");
+            _simpleDiscovery.RegisterService("Example.Service", "https://localhost:7002");
         }
     }
 }
